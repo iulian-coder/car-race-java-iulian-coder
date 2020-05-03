@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Race {
 
-    private List<Car> racers = new ArrayList<>();
+    private final List<Vehicle> racers = new ArrayList<>();
 
 
-    public void registerRacer(Car racers) {
+    public void registerRacer(Vehicle racers) {
         this.racers.add(racers);
     }
 
-    public List<Car> getRacers() {
+    public List<Vehicle> getRacers() {
         return this.racers;
     }
 
@@ -21,14 +21,22 @@ public class Race {
      * moving the vehicles for the duration of a whole race.
      */
     public void simulateRace() {
-        int hour = 1;
-        while (hour <50){
-            for (Car car: racers){
-                car.moveForAnHour();
-            }
-            hour++;
-        }
+        Weather weather = new Weather();
+        YellowFlag yellowFlag = new YellowFlag();
 
+
+        for (int lap = 0; lap < 50; lap++) {
+//            System.out.println("LAP No. -> " + lap);
+//            System.out.println("Chance of rain " + weather.getChanceOfRain() + "%" + " is it raining "+ weather.getIsRaining());
+            System.out.println(yellowFlag);
+//            weather.setRaining();
+            for (Vehicle raceCompetitor : racers) {
+                raceCompetitor.moveForAnHour();
+            }
+//            printRaceResults();
+
+
+        }
     }
 
     /**
@@ -36,9 +44,8 @@ public class Race {
      * race.
      */
     public void printRaceResults() {
-        System.out.println("<-->Race Results<-->");
-        for (Car car: racers){
-            System.out.println(car);
+        for (Vehicle raceCompetitor : racers) {
+            System.out.print(raceCompetitor + " \n");
         }
 
     }
